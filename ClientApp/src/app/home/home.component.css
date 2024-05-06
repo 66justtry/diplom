@@ -1,0 +1,51 @@
+.page {
+    margin-top:60px;
+    width: 100%;
+    height: 100vh; /* 100% высоты окна браузера */
+    margin-top: 50px; /* Учтем высоту фиксированной строки */
+}
+
+.body-content {
+    max-width: 1200px; /* Максимальная ширина контента */
+    margin: 0 auto; /* Выравнивание по центру */
+    padding: 20px; /* Добавим немного отступа */
+}
+
+.header {
+    text-align: center;
+}
+
+.main-image {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px 0;
+}
+
+.custom-block {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    height: 40px; /* Высота блока */
+  }
+  
+  .line {
+    height: 2px; /* Толщина линии */
+    background-color: #ccc; /* Цвет линии */
+    flex: 1;
+  }
+  
+  .left-line {
+    margin-right: 10px; /* Расстояние между линией и значком курсора */
+  }
+  
+  .right-line {
+    margin-left: 10px; /* Расстояние между линией и текстом */
+  }
+  
+  .text {
+    flex: 1;
+    text-align: center; /* Выравнивание текста по центру */
+    font-weight: bold;
+  }

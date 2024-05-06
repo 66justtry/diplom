@@ -1,0 +1,40 @@
+.navigation {
+    display: flex;
+    justify-content: space-between; /* Распределение блоков по всей ширине с промежутками */
+    text-align: center;
+}
+
+.navigation div {
+    flex-grow: 1;
+    background-color: #222;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 0.5px solid rgb(223, 219, 219);
+    display: flex;
+    flex-direction: column; /* Добавлено для вертикального расположения внутренних элементов */
+    justify-content: center; /* Выравнивание внутренних элементов по центру */
+}
+
+.navigation div span:nth-child(1) {
+    font-weight: bold;
+}
+
+.navigation div span:nth-child(2) {
+    color: #ccc; /* Светло-серый цвет */
+    font-size: 14px; /* Меньший размер шрифта */
+}
+
+.navigation div.active {
+    background-color: red; /* Цвет активной кнопки */
+}
+
+.navigation div.active span {
+    color: white;
+}
+
+.navigation div:hover {
+    border-color: red;
+}

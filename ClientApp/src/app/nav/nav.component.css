@@ -1,0 +1,32 @@
+.fixed-bar {
+  width: 100%;
+  height: 60px; /* Высота вашей строки */
+  background-color: #222; /* Цвет фона строки */
+  border-bottom: 0.5px solid rgb(223, 219, 219);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Выше остальных элементов страницы */
+  display: flex;
+    align-items: center; /* Выравнивание по центру по вертикали */
+    justify-content: space-between;
+}
+
+.burger-menu {
+  position: absolute;
+  top: 0px;
+  left: 20px;
+  cursor: pointer;
+  font-size: 36px;
+}
+
+.page-title {
+  flex-grow: 1; /* Занимает все доступное пространство, чтобы оставшееся пространство выровнялось по центру */
+  text-align: center; /* Выравнивание текста по центру */
+}
+
+.page-title span {
+  cursor: pointer;
+  font-size: 36px;
+  font-weight: bold;
+}

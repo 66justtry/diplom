@@ -1,0 +1,6 @@
+<div class="navigation">
+    <div *ngFor="let dateinfo of dateButtonInfo; let i = index" (click)="sendDate(dateinfo.date, i)" [class.active]="selectedIndex === i">
+        <span>{{ dateinfo.spanText1 }}</span>
+        <span>{{ dateinfo.spanText2 }}</span>
+    </div>
+</div>

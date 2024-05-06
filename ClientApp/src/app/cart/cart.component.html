@@ -1,0 +1,58 @@
+<div *ngIf="isLoading" class="loading-spinner"></div>
+
+<div *ngIf="!isLoading && !isPaymentActive && !isError && !isOk && cart !== null" class="content">
+    <div class="left-block">
+        <div class="top-block">
+          <img [src]="cart.photoUrl" alt="Картинка">
+          <div class="text-fields">
+            <h1>{{ cart.name }}</h1>
+            <div class="video-type">{{ cart.videoTypeName }}</div>
+            <div class="datetime-info">
+                <div class="icon"><img src="/assets/icons/place.png"></div>
+                <div class="info">{{ cart.hallName }}</div>
+                <div class="icon"><img src="/assets/icons/date.png"></div>
+                <div class="info">{{ sessionDate }}</div>
+                <div class="icon"><img src="/assets/icons/time.png"></div>
+                <div class="info">{{ sessionTime }}</div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="bottom-block">
+          <h2>ЕКРАН</h2>
+          <div class="screen"></div>
+          <div class="outer-block" *ngFor="let value of seatMatrix">
+            <div class="inner-block" *ngFor="let v of value" (mouseover)="showTooltip(v)" (mouseout)="hideTooltip(v)" [ngClass]="{'taken': v.isTaken, 'clicked': v.isClicked, 'type0': v.price === typeArray[0], 'type1': v.price === typeArray[1]}" (click)="cellClick(v)">{{ v.isTaken ? '✖' : '' }}<div *ngIf="v.isTooltipVisible" class="tooltipp">{{ v.row + ' ряд ' + v.place + ' місце ' + v.price + ' грн' }}</div></div>
+          </div>
+        </div>
+    </div>
+    
+  <div class="right-block">
+    <div class="right-block-top">
+    <h1>КВИТКИ</h1>
+      <div *ngIf="takenSeats.length === 0" class="right-block-info">Друкувати не потрібно!</div>
+      <div *ngIf="takenSeats.length === 0" class="right-block-info">З квитком одразу в зал!</div>
+      <div class="ticket-block">
+        <div class="ticket" *ngFor="let value of takenSeats">
+          <div>{{ value.row + ' ряд ' + value.place + ' місце' }}</div>
+          <div>
+            {{ value.price + ' грн' }}
+            <div class="ticket-remove" (click)="removeFromTicket(value)">✖</div>
+          </div>
+        </div>
+    </div>
+    </div>
+    <div class="right-block-bottom">
+      <div class="right-block-bottom-container">
+        <div>{{ 'Квитки: ' + count }}</div>
+        <div>{{ 'Сума: ' + sum + ' грн' }}</div>
+      </div>
+      <div class="ticket-send" (click)="openPayment()">Продовжити</div>
+    </div>
+  </div>
+</div>
+<app-payment *ngIf="isPaymentActive" [sum]="sum" (onReturn)="setIsPaymentActive($event)" (onCommit)="createOrder($event)"></app-payment>
+<app-error *ngIf="isError" [sessionId]="sessionId"></app-error>
+<app-ok *ngIf="isOk" [movie]="cart?.name" [hall]="cart?.hallName" [sessionDate]="resultDate" [sessionTime]="resultTime" [seats]="resultSeats"></app-ok>
+
+  

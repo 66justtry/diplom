@@ -1,0 +1,9 @@
+<div class="content">
+    <h2>Успіх! Ваші квитки:</h2>
+    <div class="ticket" *ngFor="let seat of seats">
+        <p>{{ movie }}</p>
+        <p>{{ sessionDate + ' - ' + sessionTime }}</p>
+        <p>{{ hall + ' - ' + seat.row + ' ряд ' + seat.place + ' місце' }}</p>
+    </div>
+    <h3 [routerLink]="'/'">На головну</h3>
+</div>

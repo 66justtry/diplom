@@ -1,0 +1,68 @@
+
+<div *ngIf="isLoading" class="loading-spinner"></div>
+<div *ngIf="!isLoading && movie === null" class="message"><span>ФІЛЬМ НЕ ЗНАЙДЕНО :(</span><span [routerLink]="'/'">На головну</span></div>
+<div *ngIf="!isLoading && movie !== null" class="movie-page">
+    <div class="sidebar-left">
+      <img [src]="movie.photoUrl">
+    </div>
+  
+    <div class="main-content">
+        <h1>{{ movie.name }}</h1>
+
+        <ul>
+          <li>
+            <p class="first-paragraph">Вік:</p>
+            <p class="second-paragraph">{{ movie.age }}+</p>
+          </li>
+          <li>
+            <p class="first-paragraph">Рік:</p>
+            <p class="second-paragraph">{{ movie.year }}</p>
+          </li>
+          <li>
+            <p class="first-paragraph">Оригінальна назва:</p>
+            <p class="second-paragraph">{{ movie.nameOriginal }}</p>
+          </li>
+          <li>
+            <p class="first-paragraph">Режисер:</p>
+            <p class="second-paragraph">{{ movie.director }}</p>
+          </li>
+          <li>
+            <p class="first-paragraph">Жанр:</p>
+            <p class="second-paragraph">{{ movie.genre }}</p>
+          </li>
+          <li>
+            <p class="first-paragraph">Тривалість:</p>
+            <p class="second-paragraph">{{ (movie.duration / 60).toFixed(0) }}:{{ (movie.duration % 60).toString().length === 2 ? (movie.duration % 60) : '0' + (movie.duration % 60) }}</p>
+          </li>
+          <li>
+            <p class="first-paragraph">Виробництво:</p>
+            <p class="second-paragraph">{{ movie.country }}</p>
+          </li>
+          <li>
+            <p class="first-paragraph">У головних ролях:</p>
+            <p class="second-paragraph">{{ movie.actors }}</p>
+          </li>
+        </ul>
+        
+        <p class="info-paragraph">{{ movie.info }}</p>
+    </div>
+  
+    <div class="sidebar-right">
+      <h3>Розклад сеансів</h3>
+      <div class="dropdown" (click)="changeDropdown()" *ngIf="hasSessions">
+        <span class="dropdown-span">{{ dateText }}</span>
+        <div class="dropdown-content" [class.active]="isDropdownOpened">
+          <div *ngFor="let value of dateButtons; let i = index" (click)="setIndex(i)" class="dropdown-item">{{ value }}</div>
+        </div>
+      </div>
+      
+      <div *ngIf="!hasSessions" class="message"><span>НА ЦЕЙ ФІЛЬМ СЕАНСІВ НЕМАЄ :(</span></div>
+      
+      
+      <div *ngFor="let value of currentSessions" class="additional-value">
+        <p [routerLink]="'/cart/' + value.id" (mouseover)="showTooltip(value)" (mouseout)="hideTooltip(value)">{{ value.output }}</p>
+        <div *ngIf="value.isTooltipVisible" class="tooltipp">{{ 'від ' + value.price + ' грн' }}</div>
+      </div>
+    </div>
+  </div>
+  

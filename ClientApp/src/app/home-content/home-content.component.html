@@ -1,0 +1,17 @@
+<div class="content">
+    <div *ngIf="isLoading" class="loading-spinner"></div>
+    <!-- Блоки контента -->
+    <div class="content-block" *ngFor="let movie of movies">
+        <div class="left-block">
+            <img [src]="movie.photoUrl" [routerLink]="'/movies/' + movie.id" alt="{{ movie.name }}">
+        </div>
+        <div class="right-block">
+            <p [routerLink]="'/movies/' + movie.id">{{ movie.age }}+ {{ movie.name }}</p>
+            <div *ngFor="let value of movie.sessions" class="additional-value">
+                <p [routerLink]="'/cart/' + value.id" (mouseover)="showTooltip(value)" (mouseout)="hideTooltip(value)">{{ value.output }}</p>
+                <div *ngIf="value.isTooltipVisible" class="tooltipp">{{ 'від ' + value.price + ' грн' }}</div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!isLoading && movies.length == 0" class="message"><span>НА ЦЕЙ ДЕНЬ СЕАНСІВ НЕМАЄ :(</span></div>
+</div>

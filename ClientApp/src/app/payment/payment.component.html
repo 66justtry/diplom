@@ -1,0 +1,27 @@
+<div class="content">
+    <div class="input-form">
+        <div class="header">
+          <button class="back-button" (click)="onReturn.emit(false)">Назад</button>
+        </div>
+        <div class="form-content">
+          <div class="form-group">
+            <label for="phone">Телефон:</label>
+            <input type="tel" id="phone" placeholder="+380" [(ngModel)]="phone" />
+            <span>{{ phoneSpan || '&nbsp;' }}</span>
+          </div>
+          <div class="form-group">
+            <label for="cardNumber">Номер карти:</label>
+            <input type="text" id="cardNumber" placeholder="16 цифр" [(ngModel)]="cardNumber" />
+            <span>{{ cardNumberSpan || '&nbsp;' }}</span>
+          </div>
+          <div class="form-group">
+            <label for="cardCode">CVV:</label>
+            <input type="text" id="cardCode" placeholder="3 цифри з заднього боку" [(ngModel)]="cardCode" />
+            <span>{{ cardCodeSpan || '&nbsp;' }}</span>
+          </div>
+          <h3>{{ 'Сума до сплати: ' + sum + 'грн' }}</h3>
+          <button *ngIf="!isSending" class="confirm-button" (click)="send()">Сплатити</button>
+          <div *ngIf="isSending" class="loading-spinner"></div>
+        </div>
+      </div>
+</div>
